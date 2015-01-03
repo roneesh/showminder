@@ -1,0 +1,30 @@
+= form_for @show do |f|
+  - if @show.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@show.errors.count, "error")} prohibited this show from being saved:"
+      %ul
+        - @show.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :theater
+    = f.text_field :theater
+  .field
+    = f.label :address
+    = f.text_field :address
+  .field
+    = f.label :price
+    = f.text_field :price
+  .field
+    = f.label :show_time
+    = f.datetime_select :show_time
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = hidden_field_tag "show[user_id]", current_user.id
+  .actions
+    = f.submit 'Save'
